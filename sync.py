@@ -38,7 +38,7 @@ INCLUDE = [
 # Matched against the path relative to $HOME and against the bare file name.
 EXCLUDE = [
     '*.bak*', '*.tmp', '__pycache__', '*.pyc', '.git',
-    '*-check.qml', '*-preview.qml', '.config/quickshell/md3/preview.qml',
+    '*-check.qml', '*-preview.qml', '.config/quickshell/md3/preview.qml', '.config/quickshell/md3/preview.png',
     '.config/quickshell/md3/tools/nightlight/md3-nightlight',  # built by install.sh
     '.config/hypr/conf/monitors.lua', '.config/hypr/hyprpaper.conf',  # repo keeps generic versions
     '.config/hypr/scripts/rgb*', '.config/hypr/scripts/RGB.md',
