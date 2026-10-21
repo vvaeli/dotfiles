@@ -1,0 +1,341 @@
+/**
+ * @name MD3 Shell
+ * @description Discord in the md3 shell style: wallpaper palette from matugen, rounded cards, pills.
+ * @author vael
+ * @version 2.0.0
+ */
+
+/* ---------- Palette (matugen) ---------- */
+:root, .theme-dark, .theme-darker, .theme-midnight, .theme-light, .visual-refresh {
+    --md3-primary: #ffb3ae;
+    --md3-on-primary: #571e1c;
+    --md3-primary-container: #733330;
+    --md3-on-primary-container: #ffdad7;
+    --md3-secondary-container: #5d3f3d;
+    --md3-on-secondary-container: #ffdad7;
+    --md3-tertiary: #e2c28c;
+    --md3-error: #ffb4ab;
+    --md3-on-error: #690005;
+    --md3-lowest: #140c0b;
+    --md3-surface: #1a1111;
+    --md3-low: #231919;
+    --md3-mid: #271d1c;
+    --md3-high: #322827;
+    --md3-highest: #3d3231;
+    --md3-text: #f1dedd;
+    --md3-muted: #d8c2bf;
+    --md3-outline: #a08c8a;
+    --md3-outline-variant: #534342;
+
+    --md3-card: var(--md3-low);
+    --md3-hover: color-mix(in srgb, var(--md3-text) 8%, transparent);
+    --md3-pressed: color-mix(in srgb, var(--md3-text) 12%, transparent);
+    --md3-radius-card: 20px;
+    --md3-radius-tile: 14px;
+    --md3-gap: 8px;
+    --md3-font: "Adwaita Sans", "gg sans", "Noto Sans", sans-serif;
+}
+
+/* ---------- Discord tokens -> md3 roles ---------- */
+:root, .theme-dark, .theme-darker, .theme-midnight, .theme-light, .visual-refresh {
+    /* Shapes: the whole client reads its corner radii from these. */
+    --radius-xs: 6px;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-xxl: 32px;
+
+    --font-primary: var(--md3-font);
+    --font-display: var(--md3-font);
+    --font-headline: var(--md3-font);
+
+    /* Surfaces */
+    --background-base-lowest: var(--md3-surface);
+    --background-base-lower: var(--md3-surface);
+    --background-base-low: var(--md3-card);
+    --background-gradient-lowest: var(--md3-surface);
+    --background-gradient-lower: var(--md3-surface);
+    --background-gradient-low: var(--md3-card);
+    --background-gradient-high: var(--md3-mid);
+    --background-gradient-higher: var(--md3-high);
+    --background-gradient-highest: var(--md3-high);
+    --background-surface-high: var(--md3-mid);
+    --background-surface-higher: var(--md3-high);
+    --background-surface-highest: var(--md3-highest);
+    --background-mod-subtle: var(--md3-hover);
+    --background-mod-normal: var(--md3-pressed);
+    --background-mod-strong: color-mix(in srgb, var(--md3-text) 16%, transparent);
+    --background-mod-muted: var(--md3-hover);
+    --chat-background-default: var(--md3-card);
+    --input-background-default: var(--md3-high);
+    --modal-background: var(--md3-mid);
+    --modal-footer-background: var(--md3-mid);
+    --home-background: var(--md3-card);
+    --app-frame-background: var(--md3-surface);
+    --app-frame-border: transparent;
+    --custom-theme-background: var(--md3-surface);
+    --interactive-background-hover: var(--md3-hover);
+    --interactive-background-active: var(--md3-pressed);
+    --interactive-background-selected: var(--md3-secondary-container);
+    --interactive-text-active: var(--md3-on-secondary-container);
+
+    /* Lines */
+    --border-subtle: transparent;
+    --border-muted: transparent;
+    --border-normal: var(--md3-outline-variant);
+    --border-strong: var(--md3-outline);
+    --opacity-white-8: transparent;
+
+    /* Text and icons */
+    --text-default: var(--md3-text);
+    --text-strong: var(--md3-text);
+    --text-subtle: var(--md3-muted);
+    --text-muted: var(--md3-muted);
+    --text-brand: var(--md3-primary);
+    --text-link: var(--md3-primary);
+    --icon-default: var(--md3-muted);
+    --icon-muted: var(--md3-muted);
+    --icon-strong: var(--md3-text);
+    --interactive-normal: var(--md3-muted);
+    --interactive-hover: var(--md3-text);
+    --interactive-active: var(--md3-text);
+    --interactive-muted: color-mix(in srgb, var(--md3-muted) 50%, transparent);
+    --channels-default: var(--md3-muted);
+    --channel-icon: var(--md3-muted);
+    --header-primary: var(--md3-text);
+    --header-secondary: var(--md3-muted);
+    --text-normal: var(--md3-text);
+    --mention-foreground: var(--md3-primary);
+    --mention-background: color-mix(in srgb, var(--md3-primary) 18%, transparent);
+    --info-help-foreground: var(--md3-primary);
+
+    /* Accent */
+    --brand-experiment: var(--md3-primary);
+    --brand-500: var(--md3-primary);
+    --brand-560: color-mix(in srgb, var(--md3-primary) 85%, black);
+    --brand-360: var(--md3-primary);
+    --control-brand-foreground: var(--md3-primary);
+    --control-brand-foreground-new: var(--md3-primary);
+    --control-primary-background-default: var(--md3-primary);
+    --control-primary-background-hover: color-mix(in srgb, var(--md3-primary) 90%, var(--md3-on-primary));
+    --control-primary-background-active: color-mix(in srgb, var(--md3-primary) 84%, var(--md3-on-primary));
+    --control-primary-text-default: var(--md3-on-primary);
+    --control-primary-text-hover: var(--md3-on-primary);
+    --control-primary-text-active: var(--md3-on-primary);
+    --control-secondary-background-default: var(--md3-highest);
+    --control-secondary-background-hover: color-mix(in srgb, var(--md3-highest) 88%, var(--md3-text));
+    --control-secondary-background-active: color-mix(in srgb, var(--md3-highest) 82%, var(--md3-text));
+    --control-secondary-text-default: var(--md3-text);
+    --control-secondary-border-default: transparent;
+    --control-secondary-border-hover: transparent;
+    --control-critical-primary-background-default: var(--md3-error);
+    --control-critical-primary-text-default: var(--md3-on-error);
+    --button-filled-brand-background: var(--md3-primary);
+    --button-filled-brand-background-hover: color-mix(in srgb, var(--md3-primary) 90%, var(--md3-on-primary));
+    --button-filled-brand-text: var(--md3-on-primary);
+    --button-secondary-background: var(--md3-highest);
+    --button-secondary-background-hover: color-mix(in srgb, var(--md3-highest) 88%, var(--md3-text));
+    --status-danger: var(--md3-error);
+    --text-feedback-critical: var(--md3-error);
+
+    /* Classic names, still read by older components and plugins */
+    --background-primary: var(--md3-card);
+    --background-secondary: var(--md3-surface);
+    --background-secondary-alt: var(--md3-surface);
+    --background-tertiary: var(--md3-surface);
+    --background-floating: var(--md3-mid);
+    --background-accent: var(--md3-highest);
+    --background-modifier-hover: var(--md3-hover);
+    --background-modifier-active: var(--md3-pressed);
+    --background-modifier-selected: var(--md3-secondary-container);
+    --background-modifier-accent: var(--md3-outline-variant);
+    --channeltextarea-background: var(--md3-high);
+    --scrollbar-thin-thumb: var(--md3-outline-variant);
+    --scrollbar-thin-track: transparent;
+    --scrollbar-auto-thumb: var(--md3-outline-variant);
+    --scrollbar-auto-track: transparent;
+}
+
+/* ---------- Layout: surface frame with floating cards, like the shell ---------- */
+body, #app-mount, [class*="appMount__"], .bar_c38106,
+[class^="base__5e434"], [class*=" base__5e434"], .sidebar__5e434, .guilds__5e434 {
+    background: var(--md3-surface) !important;
+}
+.sidebar__5e434::after { display: none !important; }
+
+/* Channel / DM list */
+.sidebarList__5e434 {
+    background: var(--md3-card) !important;
+    border: none !important;
+    border-radius: var(--md3-radius-card) !important;
+    margin: 0 var(--md3-gap) var(--md3-gap) 0;
+}
+
+/* Chat page */
+.page__5e434 {
+    background: var(--md3-card) !important;
+    border: none !important;
+    border-radius: var(--md3-radius-card);
+    margin: 0 var(--md3-gap) var(--md3-gap) 0;
+    overflow: hidden;
+}
+.chat_f75fb0, .chat__2d9cc, .chatContent_f75fb0, .container__133bf { background: transparent !important; }
+
+/* Member list and thread sidebar: a nested card inside the page */
+.membersWrap_c8ffbb, .members_c8ffbb, .members__1ee8c {
+    background: var(--md3-mid) !important;
+    border-radius: var(--md3-radius-tile);
+}
+.membersWrap_c8ffbb { margin: var(--md3-gap); overflow: hidden; }
+
+/* Voice + account panels at the bottom of the sidebar */
+.panels__5e434 {
+    background: var(--md3-high) !important;
+    border: none !important;
+    border-radius: var(--md3-radius-card) !important;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.28) !important;
+}
+.panels__5e434 > * { border-color: transparent !important; }
+
+/* Voice panel action buttons: tonal, the accent stays for active states */
+.buttonColor_e131a9 {
+    background: var(--md3-highest) !important;
+    color: var(--md3-text) !important;
+}
+.buttonColor_e131a9:hover { background: color-mix(in srgb, var(--md3-highest) 86%, var(--md3-text)) !important; }
+
+/* Call view sits on the page card */
+.callContainer_cb9592 { background: var(--md3-lowest) !important; }
+
+/* Title bar */
+.bar_c38106 { border: none !important; }
+.winButton_c38106, .winButton__421ed { border-radius: 999px; }
+.winButtonClose_c38106:hover { background: var(--md3-error) !important; color: var(--md3-on-error) !important; }
+
+/* ---------- Lists: channels, DMs, members ---------- */
+.link__2ea32, .interactive__972a0, .interactive__2f4f7, .interactive__14245,
+.memberInner__5d473, .member_c8ffbb > div {
+    border-radius: 999px !important;
+}
+.wrapper__2ea32.modeSelected__2ea32 .link__2ea32 {
+    background: var(--md3-secondary-container) !important;
+}
+.wrapper__2ea32.modeSelected__2ea32 .link__2ea32 *,
+.interactiveSelected__972a0, .interactiveSelected__972a0 * {
+    color: var(--md3-on-secondary-container) !important;
+}
+.containerDefault__29444 [class*="mainContent"] { border-radius: 999px; }
+/* Category headers: sentence case like the shell's group labels */
+.containerDefault__29444 .name__29444, .membersGroup_c8ffbb, [class*="privateChannelsHeaderContainer"] {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-weight: 600;
+}
+
+/* Server list: rounded squares, primary pill indicator */
+.blobContainer_e5445c, [class*="childWrapper__"] { border-radius: var(--md3-radius-tile) !important; }
+.guilds__5e434 [data-list-item-id] img,
+.guilds__5e434 [class*="wrapper_"] svg foreignObject { border-radius: var(--md3-radius-tile); }
+.pill_e5445c .item_e5445c, [class*="pill__"] [class*="item__"] { background: var(--md3-primary) !important; }
+
+/* ---------- Chat ---------- */
+.channelTextArea__74017, .channelTextArea_d9be46, .channelTextArea_f75fb0, .channelTextArea_fb64c9,
+.scrollableContainer__74017, .themedBackground__74017 {
+    border-radius: 24px !important;
+}
+.channelTextArea__74017 .scrollableContainer__74017, .themedBackground__74017 {
+    background: var(--md3-high) !important;
+    border: none !important;
+}
+.form_f75fb0, .form_d9be46 { background: transparent !important; }
+.form_f75fb0::before { display: none !important; }
+
+.messageListItem__5126c .message__5126c { border-radius: var(--md3-radius-tile); }
+.message__5126c.mentioned__5126c {
+    background: color-mix(in srgb, var(--md3-primary) 12%, transparent) !important;
+}
+.message__5126c.mentioned__5126c::before { background: var(--md3-primary) !important; border-radius: 4px; }
+
+.embedFull__623de {
+    background: var(--md3-mid) !important;
+    border: none !important;
+    border-radius: var(--md3-radius-tile) !important;
+}
+code.inline, pre code, [class*="codeContainer"] { border-radius: 8px !important; border: none !important; }
+pre code { background: var(--md3-lowest) !important; }
+
+/* ---------- Controls ---------- */
+.button__201d5 {
+    border-radius: 999px !important;
+    border-color: transparent !important;
+    font-family: var(--md3-font);
+}
+.button__201d5.lookFilled__201d5.colorBrand__201d5:not(.buttonColor_e131a9) {
+    background: var(--md3-primary) !important;
+    color: var(--md3-on-primary) !important;
+}
+.button__201d5.lookFilled__201d5.colorPrimary__201d5 {
+    background: var(--md3-highest) !important;
+    color: var(--md3-text) !important;
+}
+.button__201d5.lookFilled__201d5.colorRed__201d5 {
+    background: var(--md3-error) !important;
+    color: var(--md3-on-error) !important;
+}
+.button__201d5.sizeIcon__201d5 { border-radius: 999px !important; }
+
+input[class*="input"], .inputDefault__09aca, [class*="searchBar"] {
+    border-radius: 999px !important;
+    border: none !important;
+    background: var(--md3-high) !important;
+}
+.searchBar_e6b769 { border: none !important; box-shadow: none !important; }
+.searchBar_e6b769 > button, .searchBar_e6b769 [role="button"] {
+    background: var(--md3-high) !important;
+    border-radius: 999px !important;
+    color: var(--md3-muted) !important;
+}
+textarea[class*="textArea"]:not([class*="74017"]) { border-radius: var(--md3-radius-tile) !important; }
+
+/* Switches: md3 track and thumb */
+.container__09aca, .container_cc4a59 { border-radius: 999px !important; }
+
+/* ---------- Floating surfaces ---------- */
+.menu_c1e9c4 {
+    background: var(--md3-mid) !important;
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.35) !important;
+}
+.menu_c1e9c4 .item_c1e9c4 { border-radius: 10px !important; }
+.menu_c1e9c4 .item_c1e9c4:hover, .menu_c1e9c4 .item_c1e9c4[class*="focused"] {
+    background: var(--md3-hover) !important;
+    color: var(--md3-text) !important;
+}
+.menu_c1e9c4 [class*="separator"] { border-color: var(--md3-outline-variant) !important; opacity: 0.6; }
+
+[class*="tooltip_"]:not([class*="tooltipPointer"]):not([class*="tooltipContent"]):not([class*="Text"]) {
+    border-radius: 10px !important;
+}
+
+[class^="root_"][role="dialog"], [class*=" root_"][role="dialog"],
+[class^="root__"][role="dialog"], [class*="modal__"][role="dialog"], [class*="focusLock"] > div[role="dialog"] {
+    border-radius: 28px !important;
+    border: none !important;
+    overflow: hidden;
+}
+
+/* Popouts (profile, emoji, gif) */
+[class*="userPopoutOuter"], [class*="userProfileOuter"], [class*="contentWrapper__08434"],
+[class*="expressionPicker"], [class*="emojiPicker"] {
+    border-radius: var(--md3-radius-card) !important;
+    border: none !important;
+}
+
+/* ---------- Typography and scrollbars ---------- */
+body, input, textarea, button, select {
+    font-family: var(--md3-font) !important;
+}
+code, pre, kbd, .hljs { font-family: "JetBrains Mono", "Adwaita Mono", monospace !important; }
+::-webkit-scrollbar-thumb { border-radius: 999px !important; border: none !important; }

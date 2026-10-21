@@ -1,0 +1,67 @@
+[config.wallpaper]
+command = "true"
+set = false
+
+[templates.md3]
+input_path = "@HOME@/.config/quickshell/md3/palette-template.json"
+output_path = "@HOME@/.cache/md3/colors.pending.json"
+
+# Цвета приложений. После генерации theme_sync.py перезагружает то, что умеет на лету.
+[templates.gtk3]
+input_path = "@HOME@/.config/quickshell/md3/templates/gtk-colors.css"
+output_path = "@HOME@/.config/gtk-3.0/md3-colors.css"
+
+[templates.gtk4]
+input_path = "@HOME@/.config/quickshell/md3/templates/gtk-colors.css"
+output_path = "@HOME@/.config/gtk-4.0/md3-colors.css"
+
+[templates.ghostty]
+input_path = "@HOME@/.config/quickshell/md3/templates/ghostty"
+output_path = "@HOME@/.config/ghostty/themes/md3"
+
+[templates.btop]
+input_path = "@HOME@/.config/quickshell/md3/templates/btop.theme"
+output_path = "@HOME@/.config/btop/themes/md3.theme"
+
+[templates.vencord]
+input_path = "@HOME@/.config/quickshell/md3/templates/vencord.css"
+output_path = "@HOME@/.config/Vencord/themes/md3.css"
+
+[templates.spicetify]
+input_path = "@HOME@/.config/quickshell/md3/templates/spicetify.ini"
+output_path = "@HOME@/.config/spicetify/Themes/md3/color.ini"
+
+[templates.qt6ct]
+input_path = "@HOME@/.config/quickshell/md3/templates/qtct.conf"
+output_path = "@HOME@/.config/qt6ct/colors/md3.conf"
+
+[templates.qt5ct]
+input_path = "@HOME@/.config/quickshell/md3/templates/qtct.conf"
+output_path = "@HOME@/.config/qt5ct/colors/md3.conf"
+
+[templates.pywalfox]
+input_path = "@HOME@/.config/quickshell/md3/templates/pywal.json"
+output_path = "@HOME@/.cache/wal/colors.json"
+
+# Dark Reader: настройки для импорта (Settings → Advanced → Import Settings).
+[templates.darkreader]
+input_path = "@HOME@/.config/quickshell/md3/templates/darkreader.json"
+output_path = "@HOME@/.cache/md3/darkreader-settings.json"
+
+[templates.hyprland]
+input_path = "@HOME@/.config/quickshell/md3/templates/hypr-colors.lua"
+output_path = "@HOME@/.config/hypr/conf/colors.lua"
+
+[templates.hyprlock]
+input_path = "@HOME@/.config/quickshell/md3/templates/hyprlock-colors.conf"
+output_path = "@HOME@/.config/hypr/hyprlock-colors.conf"
+
+# Steam: своя тема Millennium "md3" берёт цвета отсюда; Steam подхватывает их при запуске.
+[templates.steam]
+input_path = "@HOME@/.config/quickshell/md3/templates/steam-md3.css"
+output_path = "@HOME@/.local/share/Steam/millennium/themes/md3/src/colors.css"
+
+# Screen share picker (hyprland-share-picker, через ~/.config/hypr/scripts/share-picker).
+[templates.share_picker]
+input_path = "@HOME@/.config/quickshell/md3/templates/share-picker.qss"
+output_path = "@HOME@/.config/hypr/share-picker.qss"

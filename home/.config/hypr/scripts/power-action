@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+case "${1:-}" in
+    poweroff|reboot) ;;
+    *) exit 2 ;;
+esac
+if ! "$HOME/.config/hypr/scripts/rgb-power" off; then
+    notify-send -u critical 'Подсветка' 'Не удалось отключить подсветку; подробности в журнале.' || true
+fi
+if ! systemctl "$1"; then
+    "$HOME/.config/hypr/scripts/rgb-power" on
+    exit 1
+fi

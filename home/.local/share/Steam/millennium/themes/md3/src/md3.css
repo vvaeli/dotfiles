@@ -1,0 +1,564 @@
+@import url("./colors.css");
+/* MD3 Shell: Steam client windows. md3.js recolors Steam's own rules to the palette;
+   this file gives the shapes of the shell menus: cards on the surface, pills, round icon buttons.
+   Class names are Steam's hashed module names, grouped by the place they style. */
+
+:root {
+    --md3-card: rgb(var(--md3-surface-container-low));
+    --md3-tile: rgb(var(--md3-surface-container-high));
+    --md3-hover: rgb(var(--md3-surface-container-highest));
+    --md3-radius-card: 20px;
+    --md3-radius-tile: 14px;
+    --font-family: 'Adwaita Sans', 'Noto Sans', sans-serif;
+    --MillenniumText-Font: 'Adwaita Sans', 'Noto Sans', sans-serif;
+    --MillenniumTextColor-Normal: rgb(var(--md3-on-surface));
+    --MillenniumTextColor-Muted: rgb(var(--md3-on-surface-variant));
+    --MillenniumControls-BorderRadius: 999px;
+}
+
+/* Typeface of the desktop. */
+body, body *:not(code):not(pre):not(.monospace) {
+    font-family: 'Adwaita Sans', 'Noto Sans', 'Twemoji', sans-serif !important;
+    letter-spacing: 0 !important;
+}
+body {
+    background: rgb(var(--md3-surface)) !important;
+}
+::selection {
+    color: rgb(var(--md3-on-primary));
+    background: rgb(var(--md3-primary));
+}
+
+/* Scrollbars: thin outline thumb, primary while held, like the shell lists. */
+::-webkit-scrollbar {
+    width: 12px !important;
+    height: 12px !important;
+    background: transparent !important;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+    background: transparent !important;
+}
+::-webkit-scrollbar-thumb {
+    min-height: 40px;
+    border: 4px solid transparent !important;
+    border-radius: 999px !important;
+    background-clip: content-box !important;
+    background-color: rgba(var(--md3-outline), .5) !important;
+}
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+    background-color: rgb(var(--md3-primary)) !important;
+}
+::-webkit-scrollbar-button {
+    display: none !important;
+}
+
+/* ---------- Window chrome ---------- */
+
+/* Title bar and navigation share the surface; no separator lines. */
+._3Z7VQ1IMk4E3HsHvrkLNgo,
+._39oUCO1OuizVPwcnnv88no,
+._3Z3ohQ8-1NKnCZkbS6fvy {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+.title-area .title-area-icon {
+    border-radius: 999px !important;
+    margin: 2px 2px 0 0;
+    transition: background-color .2s;
+}
+.title-area .title-area-icon:hover {
+    background: var(--md3-tile) !important;
+}
+.title-area .title-area-icon.closeButton:hover {
+    background: rgb(var(--md3-error)) !important;
+}
+.title-area .title-area-icon.closeButton:hover svg * {
+    stroke: rgb(var(--md3-on-error)) !important;
+}
+
+/* Strip between the navigation and the content. */
+._2CmrnGY-Amtd83ScJkFvx2 {
+    background: transparent !important;
+}
+
+/* Announcements, notifications, account, Big Picture: round tonal buttons. */
+._3cykd-VfN_xBxf3Qxriccm ._2Szzh5sKyGgnLUR870zbDE,
+._3cykd-VfN_xBxf3Qxriccm ._2Lu3d-5qLmW4i19ysTt2jT {
+    border-radius: 999px !important;
+    background-color: var(--md3-tile) !important;
+    color: rgb(var(--md3-on-surface-variant)) !important;
+    transition: background-color .2s;
+}
+._3cykd-VfN_xBxf3Qxriccm ._2Szzh5sKyGgnLUR870zbDE:hover,
+._3cykd-VfN_xBxf3Qxriccm ._2Lu3d-5qLmW4i19ysTt2jT:hover {
+    background-color: var(--md3-hover) !important;
+}
+._3cykd-VfN_xBxf3Qxriccm ._2Szzh5sKyGgnLUR870zbDE svg *,
+._3cykd-VfN_xBxf3Qxriccm ._2Szzh5sKyGgnLUR870zbDE svg {
+    fill: currentColor !important;
+}
+/* Something new (unread announcements or notifications): filled primary, like an active tile. */
+._3cykd-VfN_xBxf3Qxriccm ._1oEwirQksXfZ-3RWWslbAR,
+._3cykd-VfN_xBxf3Qxriccm ._3L1c8C0o_xXzPy26aoLBFd {
+    background-color: rgb(var(--md3-primary)) !important;
+    color: rgb(var(--md3-on-primary)) !important;
+}
+._3yD46y5pd3zOGR7CzKs0mC {
+    border-radius: 999px !important;
+    background: transparent !important;
+}
+
+/* Top menu (Steam, View, Friends…). */
+._1Ky59qmywxOUtNcI1cgmkX ._2Lu3d-5qLmW4i19ysTt2jT {
+    border-radius: 999px;
+    color: rgb(var(--md3-on-surface-variant)) !important;
+}
+._1Ky59qmywxOUtNcI1cgmkX ._2Lu3d-5qLmW4i19ysTt2jT:hover {
+    color: rgb(var(--md3-on-surface)) !important;
+    background: var(--md3-tile) !important;
+}
+
+/* Store / Library / Community: segmented pills, the current one filled like a selected chip. */
+._7AlhCx3XGzBeIrQaCneUD {
+    margin: 0 2px;
+    border-radius: 999px;
+    transition: background-color .2s;
+}
+._7AlhCx3XGzBeIrQaCneUD ._19axKcqYRuaJ8vdYKYmtTQ {
+    padding: 0 6px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    line-height: 32px !important;
+    height: 32px !important;
+    color: rgb(var(--md3-on-surface-variant)) !important;
+    text-shadow: none !important;
+}
+._7AlhCx3XGzBeIrQaCneUD ._19axKcqYRuaJ8vdYKYmtTQ::first-letter {
+    text-transform: uppercase;
+}
+._7AlhCx3XGzBeIrQaCneUD:hover {
+    background: var(--md3-tile);
+}
+._7AlhCx3XGzBeIrQaCneUD._1gqEjB5QsKT_NftD1dEsdZ {
+    background: rgb(var(--md3-primary)) !important;
+}
+._7AlhCx3XGzBeIrQaCneUD._1gqEjB5QsKT_NftD1dEsdZ ._19axKcqYRuaJ8vdYKYmtTQ {
+    color: rgb(var(--md3-on-primary)) !important;
+}
+._7AlhCx3XGzBeIrQaCneUD ._19axKcqYRuaJ8vdYKYmtTQ::after {
+    display: none !important;
+}
+
+/* ---------- Buttons and inputs ---------- */
+
+.DialogButton,
+button.DialogButton {
+    background-image: none !important;
+    border-radius: 999px !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: var(--md3-tile) !important;
+    color: rgb(var(--md3-on-surface)) !important;
+    font-weight: 500 !important;
+    transition: background-color .2s, transform .15s !important;
+}
+.DialogButton:hover:not(:disabled),
+button.DialogButton:hover:not(:disabled) {
+    background-color: var(--md3-hover) !important;
+}
+.DialogButton:active:not(:disabled) {
+    transform: scale(.97);
+}
+.DialogButton.Primary,
+button.DialogButton.Primary {
+    background-color: rgb(var(--md3-primary)) !important;
+    color: rgb(var(--md3-on-primary)) !important;
+}
+.DialogButton.Primary:hover:not(:disabled) {
+    background-color: rgb(var(--md3-on-primary-container)) !important;
+}
+.DialogButton:disabled {
+    opacity: .5;
+}
+
+.DialogInput_Wrapper,
+.DialogInput,
+input.DialogTextInputBase {
+    border-radius: 999px !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: var(--md3-tile) !important;
+    color: rgb(var(--md3-on-surface)) !important;
+}
+.DialogInput:focus,
+input.DialogTextInputBase:focus {
+    box-shadow: inset 0 0 0 2px rgb(var(--md3-primary)) !important;
+}
+textarea {
+    border-radius: var(--md3-radius-tile) !important;
+}
+
+/* Dropdowns: tonal pill; their popup is a menu card. */
+.DialogDropDown,
+._DialogInputContainer {
+    border-radius: 999px !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: var(--md3-tile) !important;
+}
+.DialogDropDown:hover {
+    background-color: var(--md3-hover) !important;
+}
+.DialogMenuPosition ._DialogInputContainer,
+.DialogMenuPosition {
+    border-radius: 16px !important;
+}
+
+/* Switches: MD3 track, outlined when off, primary when on. */
+._9Ql-oVe_j8E-vsDdyVdWo ._2bl0iQ9xigbq4Zd1NI6NZl {
+    border-radius: 999px !important;
+    background: rgb(var(--md3-surface-container-highest)) !important;
+    box-shadow: inset 0 0 0 2px rgb(var(--md3-outline)) !important;
+}
+._9Ql-oVe_j8E-vsDdyVdWo.yLrDAetGoWx0GYqA6ShfS ._2bl0iQ9xigbq4Zd1NI6NZl {
+    background: rgb(var(--md3-primary)) !important;
+    box-shadow: none !important;
+}
+._9Ql-oVe_j8E-vsDdyVdWo ._2bl0iQ9xigbq4Zd1NI6NZl::before {
+    display: none !important;
+}
+._9Ql-oVe_j8E-vsDdyVdWo ._1PQppcgkuXQAiFPar9AGi- {
+    border-radius: 999px !important;
+    background: rgb(var(--md3-outline)) !important;
+    box-shadow: none !important;
+}
+._9Ql-oVe_j8E-vsDdyVdWo.yLrDAetGoWx0GYqA6ShfS ._1PQppcgkuXQAiFPar9AGi- {
+    background: rgb(var(--md3-on-primary)) !important;
+}
+
+/* ---------- Context menus (separate windows ending in "Menu") ---------- */
+
+._2EstNjFAIEY5mdAhR0LOMy,
+.contextMenuContents,
+._1tiuYeMmTc9DMG4mhgaQ5w {
+    border-radius: 16px !important;
+    border: none !important;
+    background: rgb(var(--md3-surface-container)) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35) !important;
+    padding: 6px !important;
+}
+.contextMenuItem {
+    border-radius: 10px !important;
+    color: rgb(var(--md3-on-surface)) !important;
+}
+.contextMenuItem:hover,
+.contextMenuItem.active {
+    background: var(--md3-hover) !important;
+    color: rgb(var(--md3-on-surface)) !important;
+}
+
+/* ---------- Library ---------- */
+
+/* Sidebar: one card beside the content, like the shell menus. */
+._9sPoVBFyE_vE87mnZJ5aB {
+    margin: 4px 0 8px 8px;
+    border-radius: var(--md3-radius-card);
+    background: var(--md3-card) !important;
+    overflow: hidden;
+}
+._3x1HklzyDs4TEjACrRO2tB {
+    background: transparent !important;
+}
+/* Home button and filter rows. */
+._3AhYljPF4e4E8LaBt-FoY0,
+._3pSPluBgf0NeR1kkCLWMhR {
+    border-radius: 999px !important;
+}
+._2TKEazUUS3TlniZfpc8OOe,
+._1ZS_xta5HMXzR8JgxDH6n7,
+._20QAC4WMXm8qFE8waUT5oo {
+    background: transparent !important;
+}
+/* Game rows: rounded highlight, selected game as a filled secondary row. */
+._2-O4ZG0KrnSrzISHBKctFQ {
+    margin: 0 6px;
+    border-radius: 10px;
+}
+._2-O4ZG0KrnSrzISHBKctFQ:hover {
+    background: var(--md3-tile) !important;
+}
+._2-O4ZG0KrnSrzISHBKctFQ._1UBpAXP408Ez_L_mXhW5Q9,
+._2-O4ZG0KrnSrzISHBKctFQ.gfpUC4kUcQW8KAnB8eSoT {
+    background: rgb(var(--md3-secondary-container)) !important;
+    color: rgb(var(--md3-on-secondary-container)) !important;
+}
+
+/* Collection headers (Favorites, user collections): group labels as in the shell menus. */
+._2sYIghGVXJr6tsQVvcryy8 {
+    background: transparent !important;
+    background-image: none !important;
+}
+._2sYIghGVXJr6tsQVvcryy8 ._2mZ8LlvoUiyeEUtIWuTri {
+    text-transform: none !important;
+    font-weight: 600 !important;
+    color: rgb(var(--md3-on-surface-variant)) !important;
+}
+
+/* Content area and home shelves: cards on the surface. */
+._3BFcmjAaMyP6GTPwc0VyWi,
+._2Dd4T78PcCTUVgOtDGFY5j,
+._2Nq6ov7A1hGcHXVOXNt_OE,
+._3VQUewWB8g6Z5qB4C7dGFr,
+._3lDczhulqraStjCitLYJ1K {
+    background: transparent !important;
+}
+._3Sb2o_mQ30IDRh0C72QUUu,
+._3CJctA7pLVdwHzNF5JmORE {
+    background: transparent !important;
+}
+/* What's New and every shelf (header + row) are one card each. */
+._17uEBe5Ri8TMsnfELvs8-N {
+    margin: 0 14px 8px;
+}
+._17uEBe5Ri8TMsnfELvs8-N,
+.V7RuDNUxhxoBRaiGWbk3B {
+    border-radius: var(--md3-radius-card);
+    background: var(--md3-card) !important;
+}
+/* "Time played" / "Most popular" strip under the big capsule: a tonal tile. */
+._2d1hSvdpY5L2-GN1EnUb9Z {
+    background: rgba(var(--md3-surface-container-highest), .85) !important;
+    backdrop-filter: blur(12px);
+}
+/* Shelf header: no rule line next to the title. */
+._2W0O30CG0Q1UtW0Oq2-p6N {
+    visibility: hidden;
+}
+/* Play button on a capsule: primary tile with the dark icon. */
+._3AjoLnMNKxYmNTGTJCLfgs {
+    border-radius: 16px !important;
+    background: rgb(var(--md3-primary)) !important;
+}
+._3AjoLnMNKxYmNTGTJCLfgs svg,
+._3AjoLnMNKxYmNTGTJCLfgs svg * {
+    fill: rgb(var(--md3-on-primary)) !important;
+}
+/* Game capsules and news tiles get the tile radius. */
+._1pwP4eeP1zQD7PEgmsep0W,
+._2XftMcBO9aY7VXCivzuW7-,
+.WYgDg9NyCcMIVuMyZ_NBC,
+._2GRcKrPZsMSF6glMPRMZei,
+._2BOmkMg4r689AAjdLObYs2 {
+    border-radius: var(--md3-radius-tile) !important;
+}
+.WYgDg9NyCcMIVuMyZ_NBC {
+    overflow: hidden;
+}
+
+/* ---------- Dialogs ---------- */
+
+/* MD3 dialog: one rounded container, no top rule. */
+.ModalPosition_Content {
+    border-radius: 28px !important;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .45) !important;
+}
+.DialogContent._DialogLayout,
+.GenericDialogBase {
+    border: none !important;
+    border-radius: 28px !important;
+    background: rgb(var(--md3-surface-container)) !important;
+}
+.DialogHeader {
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+.ModalPosition_TopBar {
+    display: none !important;
+}
+.FullModalOverlay {
+    background: rgba(0, 0, 0, .45) !important;
+}
+
+/* ---------- Game page ---------- */
+
+/* Flat surface behind the page: no reflection of the hero art, no blur layer, no top hairline. */
+.HNbe3eZf6H7dtJ042x1vM._3_IUVzR9tpG_JKEjhwXEAb,
+.HNbe3eZf6H7dtJ042x1vM.HSQWw9HUAP6jtA2OZjS-u {
+    display: none !important;
+}
+.Jbe--NUNw7sxbxGsMSjVa,
+._3fLo166MlaNqP8r8tTyRz {
+    background: transparent !important;
+    backdrop-filter: none !important;
+}
+._2Nq6ov7A1hGcHXVOXNt_OE {
+    border: none !important;
+}
+/* Hero art as a rounded card aligned with the panels below. */
+.NZMJ6g2iVnFsOOp-lDmIP {
+    padding: 8px 20px 0;
+    box-sizing: border-box;
+}
+/* Steam scrolls the art with a parallax transform that shifts it off the column. */
+._1IX7FPSY9Jb82KhBVBSkZa {
+    transform: none !important;
+}
+.QlR9EFwTdUNm_J5vx54_Z {
+    overflow: hidden;
+    border-radius: var(--md3-radius-card);
+}
+
+/* Main action (Play / Install / Stop) and its menu arrow: one primary split pill. */
+._1FnJ6dPuknQFQ2RTpKTI16 {
+    gap: 3px;
+}
+._3ydigb6zZAjJ0JCDgHwSYA,
+._2q-gZ3XJzlvSGHSF-GvSmi {
+    background: rgb(var(--md3-primary)) !important;
+    color: rgb(var(--md3-on-primary)) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: filter .2s;
+}
+._3ydigb6zZAjJ0JCDgHwSYA {
+    border-radius: 999px 8px 8px 999px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+._2q-gZ3XJzlvSGHSF-GvSmi {
+    border-radius: 8px 999px 999px 8px !important;
+}
+._3ydigb6zZAjJ0JCDgHwSYA:only-child {
+    border-radius: 999px !important;
+}
+._3ydigb6zZAjJ0JCDgHwSYA:hover,
+._2q-gZ3XJzlvSGHSF-GvSmi:hover {
+    filter: brightness(1.08);
+}
+/* Icons are drawn with strokes as well as fills. */
+._3ydigb6zZAjJ0JCDgHwSYA *,
+._2q-gZ3XJzlvSGHSF-GvSmi * {
+    color: rgb(var(--md3-on-primary)) !important;
+    text-shadow: none !important;
+}
+._3ydigb6zZAjJ0JCDgHwSYA svg [fill]:not([fill="none"]),
+._2q-gZ3XJzlvSGHSF-GvSmi svg [fill]:not([fill="none"]),
+._3ydigb6zZAjJ0JCDgHwSYA svg path,
+._2q-gZ3XJzlvSGHSF-GvSmi svg path {
+    fill: rgb(var(--md3-on-primary)) !important;
+}
+._3ydigb6zZAjJ0JCDgHwSYA svg [stroke],
+._3ydigb6zZAjJ0JCDgHwSYA svg line,
+._2q-gZ3XJzlvSGHSF-GvSmi svg [stroke],
+._2q-gZ3XJzlvSGHSF-GvSmi svg line {
+    stroke: rgb(var(--md3-on-primary)) !important;
+}
+
+/* Cloud status, last played, play time: plain text beside the button, all alike. */
+._1nxYsdQLxAV_i8JIm-f64w {
+    background: transparent !important;
+}
+._1nxYsdQLxAV_i8JIm-f64w:hover {
+    background: var(--md3-tile) !important;
+    border-radius: var(--md3-radius-tile) !important;
+}
+
+/* Panels (store links, friends, achievements, activity): flat cards. */
+.Panel._31ptFGGMZrSQc5BCX1e5lm,
+._31ptFGGMZrSQc5BCX1e5lm {
+    border-radius: var(--md3-radius-card) !important;
+    background: var(--md3-card) !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+/* Store page / DLC / Community hub links: pills. */
+._1b6LYWVijW-9E4YV0keDWZ {
+    padding: 4px 12px !important;
+    border-radius: 999px !important;
+}
+._1b6LYWVijW-9E4YV0keDWZ:hover {
+    background: var(--md3-tile) !important;
+}
+
+/* Review prompt: the outer strip is the card, the inner box blends in. */
+._3LE-6w1ItIAB4CKJFCa3Od {
+    border-radius: var(--md3-radius-card) !important;
+    background: var(--md3-card) !important;
+    background-image: none !important;
+}
+._2SAb6geDpe6toA1GaP0GjH {
+    background: transparent !important;
+    background-image: none !important;
+}
+._1kCN0pAntrcGCSmcc-vYdk {
+    border-radius: 999px !important;
+    background: var(--md3-tile) !important;
+    color: rgb(var(--md3-on-surface)) !important;
+}
+._1kCN0pAntrcGCSmcc-vYdk:hover {
+    background: var(--md3-hover) !important;
+}
+
+/* Section titles in sentence case, like the shell's group labels. */
+._3A_c3YHYd4YIjA8Y-olnPl {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-weight: 600 !important;
+    color: rgb(var(--md3-on-surface-variant)) !important;
+}
+
+/* Activity: input as a tonal pill, posts as flat tiles. */
+._1JlC29Ic6L-QvL-39X_d-X {
+    border: none !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    background: var(--md3-tile) !important;
+}
+._2JSyABqFEh-v_dwaTnBydR {
+    border-radius: 999px !important;
+}
+.S2Fu9HxHCA5MaCLGrN2ib {
+    border: none !important;
+}
+/* Rule beside each date. */
+._3pcPRPvuGH7hEM33zLknZO {
+    display: none !important;
+}
+._3QRf-tp5VddAF00vWY5Gn8 {
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+    background: var(--md3-tile) !important;
+    background-image: none !important;
+    overflow: hidden;
+}
+._3QRf-tp5VddAF00vWY5Gn8:hover {
+    background: var(--md3-hover) !important;
+}
+
+/* Achievements summary: a tile inside the card. */
+._38t1mljBjmJfqjpVzMT1CG {
+    border-radius: var(--md3-radius-tile) !important;
+    background: var(--md3-tile) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+/* The 100% medal hangs off the left edge in Steam; keep it inside the tile. */
+._38t1mljBjmJfqjpVzMT1CG:has(> svg) {
+    padding-left: 64px !important;
+}
+._38t1mljBjmJfqjpVzMT1CG > svg {
+    left: 0 !important;
+    top: 0 !important;
+    width: 64px !important;
+    height: 64px !important;
+    margin: 4px;
+}

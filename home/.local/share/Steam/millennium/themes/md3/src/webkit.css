@@ -1,0 +1,99 @@
+@import url("./colors.css");
+@import url("./webkit-recolor.css");
+/* MD3 Shell: store and community pages. webkit-recolor.css (tools/gen-webkit.mjs) maps their colors to
+   the palette; this file adds the shapes of the desktop: Adwaita Sans, pill buttons, rounded tiles. */
+
+body, body *:not(code):not(pre) {
+    font-family: 'Adwaita Sans', 'Noto Sans', sans-serif !important;
+    letter-spacing: 0 !important;
+}
+body, html {
+    background: rgb(var(--md3-surface)) !important;
+}
+::selection {
+    color: rgb(var(--md3-on-primary));
+    background: rgb(var(--md3-primary));
+}
+::-webkit-scrollbar { width: 12px; height: 12px; background: transparent; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb {
+    border: 4px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+    background-color: rgba(var(--md3-outline), .5);
+}
+::-webkit-scrollbar-thumb:hover { background-color: rgb(var(--md3-primary)); }
+
+/* Page backgrounds are blue artwork on Steam; the palette surface replaces them. */
+.page_background_holder, .home_page_background, #global_header, .responsive_page_template_content,
+.page_content_ctn, .game_page_background, .profile_page .profile_header_bg_texture {
+    background-image: none !important;
+    background-color: rgb(var(--md3-surface)) !important;
+}
+
+/* Buttons: pills, primary for the call to action, tonal for the rest. */
+.btn_medium, .btn_small, .btn_large, .btn_small_tall, .btn_medium_wide, .btn_medium_tall,
+[class^="btn_"]:not(.btn_details_arrow), .DialogButton {
+    border-radius: 999px !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+[class^="btn_"] > span, [class*=" btn_"] > span {
+    border-radius: 999px !important;
+    background-image: none !important;
+    text-shadow: none !important;
+}
+.btn_green_steamui, .btn_green_white_innerfade, .btn_blue_steamui, .btn_blue_white_innerfade,
+.btn_addtocart > a, .btn_green_steamui > span, .btn_green_white_innerfade > span, .btn_blue_steamui > span {
+    background: rgb(var(--md3-primary)) !important;
+    color: rgb(var(--md3-on-primary)) !important;
+}
+.btn_darkblue_white_innerfade, .btn_darkblue_white_innerfade > span, .btnv6_blue_hoverfade, .btnv6_blue_hoverfade > span,
+.btnv6_lightblue_blue, .btnv6_lightblue_blue > span, .btn_grey_steamui, .btn_grey_steamui > span,
+.btn_grey_black, .btn_grey_black > span, .btn_grey_white_innerfade, .btn_grey_white_innerfade > span {
+    background: rgb(var(--md3-surface-container-high)) !important;
+    color: rgb(var(--md3-on-surface)) !important;
+}
+
+/* Inputs: tonal pills. */
+input[type="text"], input[type="search"], input[type="password"], .searchbox, #store_nav_search_term,
+.store_nav .searchbox {
+    border: none !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    background-color: rgb(var(--md3-surface-container-high)) !important;
+    color: rgb(var(--md3-on-surface)) !important;
+}
+
+/* Store navigation bar: a card; tabs as pills. */
+#store_nav_area .store_nav_bg, .store_nav_bg {
+    border-radius: 20px !important;
+    background: rgb(var(--md3-surface-container-low)) !important;
+    box-shadow: none !important;
+}
+.store_nav .tab, .store_nav .tab > span {
+    border-radius: 999px !important;
+    background: transparent !important;
+}
+.store_nav .tab:hover, .store_nav .tab.focus {
+    background: rgb(var(--md3-surface-container-high)) !important;
+}
+
+/* Capsules, carousels, panels: rounded like the shell tiles and cards. */
+.store_capsule, .tab_item, .home_area_spotlight, .carousel_items > a, .store_main_capsule,
+.dailydeal_cap, .special, .home_marketing_message, .search_result_row, .game_area_purchase_game,
+.block_content, .game_area_description, .profile_customization, .showcase_content_bg,
+.apphub_Card, .home_tabs_content, .page_content > .rightcol .block {
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+.game_area_purchase_game, .block_content, .profile_customization, .home_tabs_content {
+    background: rgb(var(--md3-surface-container-low)) !important;
+    box-shadow: none !important;
+}
+.discount_block .discount_pct, .discount_pct {
+    border-radius: 999px !important;
+    background: rgb(var(--md3-primary)) !important;
+    color: rgb(var(--md3-on-primary)) !important;
+}

@@ -1,0 +1,96 @@
+import QtQuick
+
+Item {
+    id: root
+    property string name: "settings"
+    property color tint: Theme.textSurface
+    implicitWidth: 20
+    implicitHeight: 20
+    readonly property var paths: ({
+        selectRegion: "M3 8V3h5 M16 3h5v5 M21 16v5h-5 M8 21H3v-5",
+        square: "M4 5h16v14H4z",
+        ellipse: "M12 5c4.4 0 8 3.1 8 7s-3.6 7-8 7-8-3.1-8-7 3.6-7 8-7",
+        arrow: "M5 19L19 5 M10 5h9v9",
+        line: "M5 19L19 5",
+        pen: "M4 20l4-1 11-11-3-3L5 16z M14 7l3 3",
+        marker: "M4 21h8 M8 16l-2 2 2 2 2-2 M8 16l9-9 3 3-9 9z",
+        text: "M5 5h14 M12 5v15 M9 20h6",
+        step: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18 M10.5 9l2-1.5V16",
+        blur: "M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11",
+        pixelate: "M4 4h5v5H4z M15 4h5v5h-5z M9.5 9.5h5v5h-5z M4 15h5v5H4z M15 15h5v5h-5z",
+        undo: "M9 14L4 9l5-5 M4 9h10a6 6 0 0 1 0 12h-3",
+        redo: "M15 14l5-5-5-5 M20 9H10a6 6 0 0 0 0 12h3",
+        copy: "M8 8h12v12H8z M16 8V4H4v12h4",
+        folder: "M3 6h7l2 2h9v12H3z M3 6V4h7l2 2",
+        clipboard: "M9 4H5v17h14V4h-4 M9 2h6v5H9z M8 11h8 M8 15h6",
+        search: "M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14 M15 15l6 6",
+        calculator: "M5 2h14v20H5z M8 5h8v4H8z M8 13h.01 M12 13h.01 M16 13h.01 M8 17h.01 M12 17h.01 M16 17h.01",
+        wallpaper: "M3 3h18v18H3z M3 17l6-7 5 6 3-3 4 4 M16 7h.01",
+        refresh: "M20 7V3 M20 7h-4 M4 17v4 M4 17h4 M20 7a9 9 0 0 0-15-2 M4 17a9 9 0 0 0 15 2",
+        link: "M10 14l4-4 M8 16l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0 M16 8l1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0",
+        arch: "M12 1 L7.7 10.4 L10.4 12 L6.9 11.9 L2 23 L8.2 20.4 C8.2 17 9.4 14.8 12 14.8 C14.6 14.8 15.8 17 15.8 20.4 L22 23 L16.5 10.9 L13.4 9.2 L15.6 8.9 Z",
+        launcher: "M4 4h6v6H4z M14 4h6v6h-6z M4 14h6v6H4z M14 14h6v6h-6z",
+        wifi: "M2 8a16 16 0 0 1 20 0 M5 12a11 11 0 0 1 14 0 M8.5 15.5a5.5 5.5 0 0 1 7 0 M12 19h.01",
+        wifiLow: "M8.5 15.5a5.5 5.5 0 0 1 7 0 M12 19h.01",
+        wifiMedium: "M5 12a11 11 0 0 1 14 0 M8.5 15.5a5.5 5.5 0 0 1 7 0 M12 19h.01",
+        volumeLow: "M3 9h4l5-4v14l-5-4H3z M16 10a3 3 0 0 1 0 4",
+        volumeMedium: "M3 9h4l5-4v14l-5-4H3z M16 8a6 6 0 0 1 0 8",
+        ethernet: "M5 3h14v12H5z M8 7h8 M9 11v4 M15 11v4 M12 15v5 M7 20h10",
+        offline: "M3 3l18 18 M2 8a16 16 0 0 1 20 0 M5 12a11 11 0 0 1 6-2 M9 16a5 5 0 0 1 6 0 M12 20h.01",
+        bluetooth: "M12 3l6 5-12 9 M12 21l6-5L6 7 M12 3v18",
+        volume: "M3 9h4l5-4v14l-5-4H3z M16 8a6 6 0 0 1 0 8 M19 5a10 10 0 0 1 0 14",
+        mute: "M3 9h4l5-4v14l-5-4H3z M17 9l5 6 M22 9l-5 6",
+        mic: "M9 5a3 3 0 0 1 6 0v7a3 3 0 0 1-6 0z M5 11a7 7 0 0 0 14 0 M12 18v4 M8 22h8",
+        micOff: "M3 3l18 18 M9 5a3 3 0 0 1 6 0v6 M9 9v3a3 3 0 0 0 5 2 M5 11a7 7 0 0 0 12 5 M19 11v2 M12 18v4 M8 22h8",
+        bell: "M5 16h14l-2-3V9a5 5 0 0 0-10 0v4z M10 20h4 M12 2v2",
+        dnd: "M4 4l16 16 M6 15l-1 1h14l-2-3V9a5 5 0 0 0-7-4 M7 9v4 M10 20h4",
+        settings: "M9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6",
+        power: "M12 2v10 M6 5a9 9 0 1 0 12 0",
+        cpu: "M6 6h12v12H6z M9 9h6v6H9z M9 2v4 M15 2v4 M9 18v4 M15 18v4 M2 9h4 M2 15h4 M18 9h4 M18 15h4",
+        memory: "M3 7h18v10H3z M7 10v4 M11 10v4 M15 10v4 M19 10v4 M7 17v3 M11 17v3 M15 17v3 M19 17v3",
+        battery: "M8 4h8v17H8z M10 1h4 M10 17h4",
+        charging: "M8 4h8v17H8z M10 1h4 M13 7l-3 6h4l-3 5",
+        keyboard: "M2 6h20v12H2z M5 10h.01 M9 10h.01 M13 10h.01 M17 10h.01 M6 14h12",
+        music: "M10 17V5l10-2v12 M10 17a3 3 0 1 1-3-3h3 M20 15a3 3 0 1 1-3-3h3",
+        play: "M8 4l12 8-12 8z",
+        pause: "M8 5v14 M16 5v14",
+        next: "M5 5l10 7-10 7z M19 5v14",
+        previous: "M19 5L9 12l10 7z M5 5v14",
+        shuffle: "M3 7h3c4 0 6 10 10 10h5 M18 14l3 3-3 3 M3 17h3c1.6 0 2.8-1.6 3.8-3.4 M13.2 9.4C14.2 8 15.2 7 16 7h5 M18 4l3 3-3 3",
+        repeat: "M17 2l3 3-3 3 M4 11V9a4 4 0 0 1 4-4h12 M7 22l-3-3 3-3 M20 13v2a4 4 0 0 1-4 4H4",
+        repeatOne: "M17 2l3 3-3 3 M4 11V9a4 4 0 0 1 4-4h12 M7 22l-3-3 3-3 M20 13v2a4 4 0 0 1-4 4H4 M11 10l1.5-1v6",
+        external: "M14 4h6v6 M20 4l-9 9 M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5",
+        close: "M6 6l12 12 M18 6L6 18",
+        left: "M15 5l-7 7 7 7",
+        right: "M9 5l7 7-7 7",
+        check: "M4 12l5 5L20 6",
+        lock: "M6 10h12v11H6z M8 10V6a4 4 0 0 1 8 0v4 M12 14v3",
+        sleep: "M20 16A9 9 0 0 1 8 4a9 9 0 1 0 12 12",
+        reboot: "M20 7V2 M20 7h-5 M20 7a9 9 0 1 0 1 8",
+        logout: "M10 3H4v18h6 M9 12h13 M17 7l5 5-5 5",
+        sun: "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8 M12 2v2 M12 20v2 M2 12h2 M20 12h2 M5 5l1 1 M18 18l1 1 M5 19l1-1 M18 6l1-1",
+        monitor: "M2 3h20v14H2z M12 17v4 M7 21h10",
+        calendar: "M3 5h18v16H3z M7 2v6 M17 2v6 M3 10h18 M7 14h2 M13 14h2 M7 18h2",
+        plus: "M12 5v14 M5 12h14",
+        minus: "M5 12h14",
+        shield: "M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z",
+        shieldCheck: "M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z M8.5 12l2.5 2.5 4.5-5",
+        shieldOff: "M3 3l18 18 M6 5.5L4 5v6c0 5 3.5 9 8 11 2-.9 3.8-2.2 5.2-3.9 M20 15.5c0-1.4 0-3 0-4.5V5l-8-3-3 1.1",
+        download: "M12 4v12 M6 11l6 6 6-6 M5 20h14",
+        upload: "M12 20V8 M6 13l6-6 6 6 M5 4h14",
+        bolt: "M13 2L4 14h7l-1 8 9-12h-7z",
+        timer: "M12 8v5l3 2 M9 2h6 M12 4a9 9 0 1 0 0 18 9 9 0 0 0 0-18",
+        coffee: "M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z M17 11h1.5a2.5 2.5 0 0 1 0 5H16 M8 2.5c-.6.8-.6 1.7 0 2.5 M12 2.5c-.6.8-.6 1.7 0 2.5",
+        nightLight: "M12 3v2 M12 19v2 M4.9 4.9l1.4 1.4 M3 12h2 M4.9 19.1l1.4-1.4 M12 8a4 4 0 0 0 0 8 M15 7.5a5 5 0 0 1 0 9 6 6 0 0 0 0-9",
+        palette: "M12 3a9 9 0 0 0 0 18c1.1 0 1.6-.8 1.4-1.7-.3-1.2.4-2.3 1.7-2.3H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10 M7.5 11h.01 M10 7h.01 M14.5 7h.01",
+        mixer: "M6 4v16 M12 4v16 M18 4v16 M4 14h4 M10 8h4 M16 16h4",
+        user: "M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8 M4 21a8 8 0 0 1 16 0",
+        gauge: "M12 14l4-5 M3.5 18a10 10 0 1 1 17 0"
+    })
+    Image {
+        anchors.fill: parent
+        sourceSize.width: width * 2
+        sourceSize.height: height * 2
+        source: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="' + (paths[name] || paths.settings) + '" fill="' + (name === "arch" ? tint : "none") + '" stroke="' + tint + '" stroke-width="' + (name === "arch" ? "0" : "1.8") + '" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+    }
+}

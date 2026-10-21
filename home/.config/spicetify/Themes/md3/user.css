@@ -1,0 +1,161 @@
+/* MD3 Shell for Spotify: colors from color.ini (matugen), shapes and type like the md3 shell. */
+:root {
+    --md3-font: "Adwaita Sans", "Spotify Mix", "Noto Sans", sans-serif;
+    --md3-radius-card: 20px;
+    --md3-radius-tile: 14px;
+    --md3-hover: rgba(var(--spice-rgb-text), 0.08);
+    --md3-pressed: rgba(var(--spice-rgb-text), 0.12);
+    --encore-body-font-stack: var(--md3-font) !important;
+    --encore-title-font-stack: var(--md3-font) !important;
+    --encore-variable-font-stack: var(--md3-font) !important;
+    --panel-gap: 8px !important;
+}
+body, button, input, textarea { font-family: var(--md3-font) !important; }
+body, .Root__top-container { background: var(--spice-main) !important; }
+
+/* ---------- Panels: rounded cards on the surface ---------- */
+.Root__nav-bar, .Root__main-view, .Root__right-sidebar > *, .Root__right-sidebar section,
+.main-view-container, .main-buddyFeed-container {
+    border-radius: var(--md3-radius-card) !important;
+}
+.Root__nav-bar, .Root__main-view, .Root__right-sidebar > * {
+    background-color: var(--spice-sidebar) !important;
+    border: none !important;
+}
+.Root__main-view { --background-base: var(--spice-sidebar); }
+/* Sticky header: tonal surface instead of the cover's extracted color */
+.main-topBar-background { background-color: var(--spice-main-elevated) !important; }
+.main-topBar-background, .main-entityHeader-backgroundColor, .main-actionBarBackground-background {
+    border-radius: var(--md3-radius-card) var(--md3-radius-card) 0 0;
+}
+
+/* Player: a card along the bottom */
+.Root__now-playing-bar { background: var(--spice-main) !important; }
+.Root__now-playing-bar > footer, .Root__now-playing-bar > div, [data-testid="now-playing-bar"] {
+    background: var(--spice-player) !important;
+    border-radius: var(--md3-radius-card) !important;
+}
+[data-testid="now-playing-bar"] { padding-inline: 8px; }
+.main-nowPlayingWidget-coverArt img, [data-testid="now-playing-widget"] img { border-radius: 10px !important; }
+
+/* Play/pause: filled primary circle, like the shell's media card */
+[data-testid="control-button-playpause"] {
+    background: var(--spice-button) !important;
+    color: var(--spice-on-button) !important;
+    transition: transform .2s cubic-bezier(.2, 0, 0, 1), filter .2s;
+}
+[data-testid="control-button-playpause"] > span, [data-testid="control-button-playpause"] > div {
+    background-color: var(--spice-button) !important;
+    color: var(--spice-on-button) !important;
+}
+[data-testid="control-button-playpause"] svg { fill: var(--spice-on-button) !important; }
+[data-testid="control-button-playpause"]:hover { transform: scale(1.06); filter: brightness(1.06); }
+.player-controls__buttons button[aria-checked="true"], .player-controls__buttons .main-shuffleButton-button[aria-checked="true"] { color: var(--spice-button) !important; }
+
+/* Progress and volume: thicker rounded track, primary fill */
+.x-progressBar-progressBarBg, .progress-bar__bg { border-radius: 999px !important; background-color: var(--spice-highlight-elevated) !important; }
+.x-progressBar-fillColor, .x-progressBar-progressFillColor { background-color: var(--spice-button) !important; border-radius: 999px !important; }
+.progress-bar { --fg-color: var(--spice-button) !important; --bg-color: var(--spice-highlight-elevated) !important; --progress-bar-height: 6px; }
+.progress-bar-wrapper .x-progressBar-sliderArea, .progress-bar .x-progressBar-sliderArea { border-radius: 999px; }
+
+/* ---------- Lists ---------- */
+.main-trackList-trackListRow, .main-yourLibraryX-listItem > div, .main-yourLibraryX-listItem [role="button"],
+[data-testid="tracklist-row"], .queue-queuePage-queuePage [role="row"] > div {
+    border-radius: var(--md3-radius-tile) !important;
+}
+.main-trackList-trackListRow:hover, [data-testid="tracklist-row"]:hover { background-color: var(--md3-hover) !important; }
+.main-trackList-trackListRow[aria-selected="true"], [data-testid="tracklist-row"][aria-selected="true"],
+.main-trackList-selected {
+    background-color: var(--spice-container) !important;
+    color: var(--spice-on-container) !important;
+}
+.main-trackList-trackListHeader { border-radius: 0; }
+.main-trackList-trackListHeaderRow { border-bottom-color: transparent !important; text-transform: none; }
+.main-trackList-trackListHeaderRow > div { color: var(--spice-subtext); }
+.main-trackList-rowSeperator, .main-trackList-trackListHeader hr { display: none !important; }
+
+/* Library: selected and active items as tonal tiles */
+.main-yourLibraryX-listItem [aria-current="true"], .main-yourLibraryX-listItem [aria-selected="true"] {
+    background-color: var(--spice-container) !important;
+}
+.main-yourLibraryX-libraryFilter button, [role="tablist"] button, .main-yourLibraryX-filterArea button {
+    border-radius: 999px !important;
+}
+.main-yourLibraryX-listItem img, .main-yourLibraryX-listItem .main-entityHeader-shadow { border-radius: 10px !important; }
+
+/* Chips and filters: pills, selected = primary */
+[role="checkbox"][aria-checked="true"] > span, button[aria-checked="true"] > span.ChipInnerComponent-sm-selected,
+.ChipInnerComponent-selected, [class*="ChipInnerComponent-sm-selected"], [class*="ChipInnerComponent-selected"] {
+    background-color: var(--spice-button) !important;
+    color: var(--spice-on-button) !important;
+}
+[class*="ChipInnerComponent"] { border-radius: 999px !important; }
+
+/* ---------- Cards and images ---------- */
+.main-card-card {
+    border-radius: var(--md3-radius-card) !important;
+    background: transparent;
+    transition: background-color .2s;
+}
+.main-card-card:hover { background-color: var(--md3-hover) !important; }
+.main-cardImage-imageWrapper, .main-cardImage-image, .main-card-imageContainer img { border-radius: var(--md3-radius-tile) !important; }
+.main-cardImage-circular, .main-cardImage-imageWrapper.main-cardImage-circular { border-radius: 50% !important; }
+.main-entityHeader-image, .main-entityHeader-imageContainer img { border-radius: var(--md3-radius-card) !important; }
+.main-card-PlayButtonContainer button > span, .main-playButton-PlayButton span {
+    background-color: var(--spice-button) !important;
+    color: var(--spice-on-button) !important;
+}
+
+/* Big green play buttons (playlist, album, artist) */
+[data-testid="play-button"] > span, .main-playButton-button > span, .main-actionBar-ActionBarRow [data-testid="play-button"] span {
+    background-color: var(--spice-button) !important;
+    color: var(--spice-on-button) !important;
+}
+[data-testid="play-button"] svg { fill: var(--spice-on-button) !important; }
+
+/* ---------- Top bar ---------- */
+.main-globalNav-searchInputContainer input, .main-topBar-searchBar input, [data-testid="search-input"] {
+    background-color: var(--spice-highlight) !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+.main-globalNav-searchInputContainer input:focus, [data-testid="search-input"]:focus {
+    box-shadow: inset 0 0 0 2px var(--spice-button) !important;
+}
+.main-globalNav-searchSection button, .main-globalNav-link-icon, .Root__globalNav button[aria-label] {
+    border-radius: 999px !important;
+}
+
+/* ---------- Floating surfaces ---------- */
+.main-contextMenu-menu, [data-tippy-root] .main-contextMenu-menu, #context-menu ul {
+    background-color: var(--spice-main-elevated) !important;
+    border-radius: 16px !important;
+    padding: 6px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35) !important;
+}
+.main-contextMenu-menuItemButton, .main-contextMenu-menuItem a, .main-contextMenu-menuItem button {
+    border-radius: 10px !important;
+}
+.main-contextMenu-menuItemButton:hover, .main-contextMenu-menuItemButton:focus { background-color: var(--md3-hover) !important; }
+.main-contextMenu-dividerAfter::after, .main-contextMenu-dividerBefore::before { border-color: rgba(var(--spice-rgb-misc), .6) !important; }
+.GenericModal, .main-trackCreditsModal-container, .main-embedWidgetGenerator-container, [role="dialog"] > div {
+    border-radius: 28px !important;
+}
+.main-popupMenu-menu, .encore-dark-theme .main-popupMenu-menu { border-radius: 16px !important; }
+[role="tooltip"], .main-contextMenu-tippy { border-radius: 10px !important; }
+
+/* Right sidebar tabs (Queue / Recently played): pills */
+.Root__right-sidebar [role="tab"], .Root__right-sidebar [role="tablist"] button {
+    border-radius: 999px !important;
+    padding: 6px 14px !important;
+}
+.Root__right-sidebar [role="tab"][aria-selected="true"] {
+    background-color: var(--spice-button) !important;
+    color: var(--spice-on-button) !important;
+}
+.Root__right-sidebar [role="tab"][aria-selected="true"]::after, .Root__right-sidebar [role="tab"]::after { display: none !important; }
+
+/* ---------- Misc ---------- */
+.os-scrollbar-handle, ::-webkit-scrollbar-thumb { border-radius: 999px !important; }
+.os-scrollbar-handle { background: rgba(var(--spice-rgb-misc), .9) !important; }

@@ -1,0 +1,54 @@
+singleton Theme 1.0 Theme.qml
+singleton Desktop 1.0 Desktop.qml
+singleton Vpn 1.0 Vpn.qml
+Audio 1.0 Audio.qml
+Bar 1.0 Bar.qml
+Calendar 1.0 Calendar.qml
+Card 1.0 Card.qml
+Chip 1.0 Chip.qml
+Icon 1.0 Icon.qml
+Label 1.0 Label.qml
+MdSlider 1.0 MdSlider.qml
+Media 1.0 Media.qml
+NotificationCard 1.0 NotificationCard.qml
+Notifications 1.0 Notifications.qml
+PanelContent 1.0 PanelContent.qml
+Power 1.0 Power.qml
+QuickSettings 1.0 QuickSettings.qml
+Tray 1.0 Tray.qml
+Workspaces 1.0 Workspaces.qml
+BarSurface 1.0 BarSurface.qml
+Reveal 1.0 Reveal.qml
+WifiMenu 1.0 WifiMenu.qml
+BluetoothMenu 1.0 BluetoothMenu.qml
+MenuPane 1.0 MenuPane.qml
+ScreenFrame 1.0 ScreenFrame.qml
+FrameSurface 1.0 FrameSurface.qml
+TrayMenu 1.0 TrayMenu.qml
+AnimatedCardList 1.0 AnimatedCardList.qml
+MainMenu 1.0 MainMenu.qml
+SystemMenu 1.0 SystemMenu.qml
+OsdSurface 1.0 OsdSurface.qml
+OsdWindow 1.0 OsdWindow.qml
+RegionSurface 1.0 RegionSurface.qml
+DockWindow 1.0 DockWindow.qml
+DockSurface 1.0 DockSurface.qml
+CrosshairWindow 1.0 CrosshairWindow.qml
+ClipboardMenu 1.0 ClipboardMenu.qml
+ClipboardWindow 1.0 ClipboardWindow.qml
+LauncherMenu 1.0 LauncherMenu.qml
+LauncherWindow 1.0 LauncherWindow.qml
+WallpaperMenu 1.0 WallpaperMenu.qml
+VpnMenu 1.0 VpnMenu.qml
+singleton Screenshot 1.0 Screenshot.qml
+ScreenshotWindow 1.0 ScreenshotWindow.qml
+MenuHeader 1.0 MenuHeader.qml
+MenuSection 1.0 MenuSection.qml
+MenuGroup 1.0 MenuGroup.qml
+MenuRow 1.0 MenuRow.qml
+MdSwitch 1.0 MdSwitch.qml
+QuickTile 1.0 QuickTile.qml
+StatusButton 1.0 StatusButton.qml
+DockTile 1.0 DockTile.qml
+NightLightMenu 1.0 NightLightMenu.qml
+NightTimeRow 1.0 NightTimeRow.qml

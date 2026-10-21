@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+import json
+import os
+import subprocess
+import time
+
+os.environ.update(GTK_USE_PORTAL='0', GDK_DEBUG='no-portals')
+for attempt in range(20):
+    try:
+        result = subprocess.run(['/usr/bin/wlr-randr', '--json'], capture_output=True, check=True, timeout=3)
+        outputs = json.loads(result.stdout)
+        if not outputs:
+            time.sleep(0.1)
+            continue
+        selected = next((output['name'] for output in outputs if output['name'] == 'DP-1'), outputs[0]['name'])
+        command = ['/usr/bin/wlr-randr', '--output', selected, '--on', '--pos', '0,0']
+        for output in outputs:
+            if output['name'] != selected: command.extend(['--output', output['name'], '--off'])
+        subprocess.run(command, check=True, timeout=5)
+        break
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        if attempt == 19: print('Monitor setup:', error, flush=True)
+        time.sleep(0.1)
+os.execv('/usr/bin/regreet', ['regreet', '--config', '/etc/greetd/regreet.toml', '--style', '/etc/greetd/regreet.css'])

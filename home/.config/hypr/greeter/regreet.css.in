@@ -1,0 +1,72 @@
+@define-color md3_surface @SURFACE@;
+@define-color md3_card @CARD@;
+@define-color md3_button @BUTTON@;
+@define-color md3_hover @HOVER@;
+@define-color md3_primary @PRIMARY@;
+@define-color md3_on_primary @ON_PRIMARY@;
+@define-color md3_text @TEXT@;
+@define-color md3_muted @MUTED@;
+@define-color md3_error @ERROR@;
+
+window {
+    background-color: @md3_surface;
+    color: @md3_text;
+    font-family: "Adwaita Sans";
+    font-size: 16px;
+}
+frame.background {
+    background: @md3_surface;
+    border: none;
+    border-radius: 28px;
+    padding: 18px;
+    box-shadow: 0 12px 32px alpha(black, 0.5);
+}
+frame.background > border { border: none; }
+frame.background > grid { padding: 4px 8px; }
+label { color: @md3_text; }
+entry, passwordentry, combobox > box > button, dropdown > button {
+    background: @md3_card;
+    color: @md3_text;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    min-height: 26px;
+    padding: 9px 12px;
+    box-shadow: none;
+    caret-color: @md3_primary;
+}
+entry:focus-within, passwordentry:focus-within {
+    border-color: @md3_primary;
+    box-shadow: 0 0 0 1px alpha(@md3_primary, 0.2);
+}
+button {
+    background: @md3_button;
+    color: @md3_text;
+    border: none;
+    border-radius: 12px;
+    min-height: 26px;
+    padding: 9px 16px;
+    box-shadow: none;
+    text-shadow: none;
+    transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+button:hover { background: @md3_hover; }
+button:active { background: alpha(@md3_primary, 0.22); }
+button:focus-visible { box-shadow: 0 0 0 2px @md3_primary; }
+button.suggested-action { background: @md3_primary; color: @md3_on_primary; font-weight: 600; }
+button.suggested-action:hover { background: shade(@md3_primary, 1.08); }
+button.destructive-action { background: @md3_button; color: @md3_error; }
+button.destructive-action:hover { background: alpha(@md3_error, 0.16); }
+button:disabled { opacity: 0.45; }
+popover > contents {
+    background: @md3_card;
+    color: @md3_text;
+    border: none;
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 6px 20px alpha(black, 0.4);
+}
+modelbutton { border-radius: 8px; padding: 8px 12px; }
+modelbutton:hover { background: @md3_hover; }
+selection { background: @md3_primary; color: @md3_on_primary; }
+infobar { background: @md3_card; border-radius: 14px; }
+tooltip { opacity: 0; }

@@ -1,0 +1,29 @@
+# ReGreet for the md3 desktop. greeter_sync.py copies this file to /etc/greetd/md3.
+# The last user and session come from regreet's cache, so the greeter opens straight
+# on the password; "Cancel" goes back to choosing a user or session.
+skip_selection = true
+
+[background]
+path = "/etc/greetd/md3/background.png"
+fit = "Cover"
+
+[GTK]
+application_prefer_dark_theme = true
+cursor_theme_name = "Adwaita"
+cursor_blink = true
+font_name = "Adwaita Sans 12"
+icon_theme_name = "Adwaita"
+theme_name = "Adwaita"
+
+[commands]
+reboot = ["systemctl", "reboot"]
+poweroff = ["systemctl", "poweroff"]
+x11_prefix = ["startx", "/usr/bin/env"]
+
+[appearance]
+greeting_msg = "@USER@"
+
+[widget.clock]
+format = "%H:%M"
+resolution = "1s"
+label_width = 80

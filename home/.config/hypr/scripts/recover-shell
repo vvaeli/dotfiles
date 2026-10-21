@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+exec 9>"${XDG_RUNTIME_DIR:?}/md3-session-${UID}.lock"
+flock 9
+export QT_QPA_PLATFORMTHEME=xdgdesktopportal
+export QT_QUICK_CONTROLS_MATERIAL_THEME=Dark
+export QT_QUICK_CONTROLS_UNIVERSAL_THEME=Dark
+dbus-update-activation-environment --systemd QT_QPA_PLATFORMTHEME QT_QUICK_CONTROLS_MATERIAL_THEME QT_QUICK_CONTROLS_UNIVERSAL_THEME WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE
+systemctl --user daemon-reload
+systemctl --user restart xdg-desktop-portal-gtk.service xdg-desktop-portal-hyprland.service xdg-desktop-portal.service
+hyprctl reload
+# Stop this configuration only; other Quickshell configurations keep running.
+python3 - <<'PY'
+import os,signal,time
+from pathlib import Path
+own=os.getuid();targets=[]
+for p in Path('/proc').iterdir():
+ if not p.name.isdigit():continue
+ try:
+  if p.stat().st_uid!=own:continue
+  args=p.joinpath('cmdline').read_bytes().split(b'\0')
+  if Path(os.fsdecode(args[0])).name not in ('qs','quickshell'):continue
+  if not any(args[i] in (b'-c',b'--config') and args[i+1]==b'md3' for i in range(len(args)-1)):continue
+  # Stop shell instances, never CLI calls to its IPC interface.
+  if b'ipc' in args:continue
+  targets.append(int(p.name));os.kill(int(p.name),signal.SIGTERM)
+ except (OSError,IndexError):pass
+time.sleep(0.4)
+for pid in targets:
+ try:os.kill(pid,signal.SIGKILL)
+ except ProcessLookupError:pass
+PY
+"$HOME/.config/hypr/scripts/start-shell" </dev/null >>"$HOME/.local/state/hypr/quickshell.log" 2>&1 9>&- &

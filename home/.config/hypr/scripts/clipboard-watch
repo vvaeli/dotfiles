@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -eu
+# Separate watchers for text and images, as cliphist recommends: a single untyped
+# watcher kept text history but never stored copied images.
+exec 8>"${XDG_RUNTIME_DIR:-/tmp}/md3-clipboard-${UID}.lock"
+flock -n 8 || exit 0
+wl-paste --type text --watch cliphist store 8>&- &
+wl-paste --type image --watch cliphist store 8>&- &
+wait

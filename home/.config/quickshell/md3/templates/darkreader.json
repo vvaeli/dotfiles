@@ -1,0 +1,31 @@
+{
+  "schemeVersion": 2,
+  "enabled": true,
+  "theme": {
+    "mode": 1,
+    "brightness": 100,
+    "contrast": 100,
+    "grayscale": 0,
+    "sepia": 0,
+    "useFont": false,
+    "fontFamily": "Adwaita Sans",
+    "textStroke": 0,
+    "engine": "dynamicTheme",
+    "stylesheet": "",
+    "darkSchemeBackgroundColor": "{{colors.surface.dark.hex}}",
+    "darkSchemeTextColor": "{{colors.on_surface.dark.hex}}",
+    "lightSchemeBackgroundColor": "{{colors.surface.light.hex}}",
+    "lightSchemeTextColor": "{{colors.on_surface.light.hex}}",
+    "scrollbarColor": "auto",
+    "selectionColor": "{{colors.primary_container.dark.hex}}",
+    "styleSystemControls": false,
+    "lightColorScheme": "Default",
+    "darkColorScheme": "Default",
+    "immediateModify": false
+  },
+  "automation": {
+    "enabled": true,
+    "mode": "system",
+    "behavior": "OnOff"
+  }
+}

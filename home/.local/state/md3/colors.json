@@ -1,0 +1,19 @@
+{
+  "mode": "dark",
+  "surface": "#1a1111",
+  "cardSurface": "#231919",
+  "cardInteractive": "#322827",
+  "cardHover": "#3d3231",
+  "buttonSurface": "#322827",
+  "buttonFilled": "#3d3231",
+  "primary": "#ffb3ae",
+  "textPrimary": "#571e1c",
+  "primaryContainer": "#733330",
+  "textPrimaryContainer": "#ffdad7",
+  "secondaryContainer": "#5d3f3d",
+  "textSurface": "#f1dedd",
+  "muted": "#d8c2bf",
+  "outline": "#534342",
+  "error": "#ffb4ab",
+  "success": "#e2c28c"
+}

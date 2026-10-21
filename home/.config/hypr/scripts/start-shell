@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# No flock here: its descriptor leaked into every app launched from the shell, and while any of
+# them was alive the shell could not be started again. --no-duplicate keeps one instance.
+exec env QT_QPA_PLATFORMTHEME= qs --no-duplicate -c md3

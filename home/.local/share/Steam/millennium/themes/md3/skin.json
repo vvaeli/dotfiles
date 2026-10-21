@@ -1,0 +1,19 @@
+{
+    "name": "MD3 Shell",
+    "description": "Steam в стиле рабочего стола md3: палитра из обоев (matugen), Adwaita Sans, карточки и таблетки как в меню панели.",
+    "author": "vael",
+    "version": "1.0.0",
+    "tags": [
+        "Dark",
+        "Material You",
+        "matugen"
+    ],
+    "Steam-WebKit": "src/webkit.css",
+    "Patches": [
+        {
+            "MatchRegexString": ".*",
+            "TargetCss": "src/md3.css",
+            "TargetJs": "src/md3.js"
+        }
+    ]
+}

@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+set -euo pipefail
+set -E
+umask 077
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+mode=area
+edit=true
+mode_set=false
+temporary_dir=''
+
+usage() {
+    cat <<'EOF'
+Usage: screenshot [area|window|active|screen] [--no-edit|copy-only]
+  area    Draw a rectangle or click a visible window outline (default).
+  window  Click a window; selection is restricted to window rectangles.
+  active  Capture the focused window immediately.
+  screen  Capture the focused monitor immediately.
+  --no-edit / copy-only  Save and copy without opening Satty.
+EOF
+}
+
+die() {
+    printf 'screenshot: %s\n' "$*" >&2
+    if command -v notify-send >/dev/null; then
+        notify-send -a 'Скриншот' -u critical 'Ошибка скриншота' "$*" || true
+    fi
+    exit 1
+}
+
+cleanup() {
+    if [[ -n "$temporary_dir" ]]; then rm -rf -- "$temporary_dir"; fi
+}
+
+on_error() {
+    local status="$1" line="$2"
+    trap - ERR
+    printf 'screenshot: command failed at line %s (exit %s)\n' "$line" "$status" >&2
+    notify-send -a 'Скриншот' -u critical 'Ошибка скриншота' \
+        'Не удалось завершить захват. Подробности — в выводе команды.' 2>/dev/null || true
+    exit "$status"
+}
+trap cleanup EXIT
+trap 'on_error "$?" "$LINENO"' ERR
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+for argument in "$@"; do
+    case "$argument" in
+        area|window|active|screen)
+            if "$mode_set"; then die 'Укажи только один режим захвата'; fi
+            mode="$argument"; mode_set=true ;;
+        --no-edit|copy-only) edit=false ;;
+        -h|--help) usage; exit 0 ;;
+        *) die "Неизвестный аргумент: $argument" ;;
+    esac
+done
+
+dependencies=(hyprctl grim jq wl-copy notify-send flock mktemp date)
+if [[ "$mode" == area || "$mode" == window ]]; then dependencies+=(slurp); fi
+if "$edit"; then dependencies+=(satty); fi
+missing=()
+for program in "${dependencies[@]}"; do
+    if ! command -v "$program" >/dev/null; then missing+=("$program"); fi
+done
+if ((${#missing[@]})); then die "Не найдены утилиты: ${missing[*]}. Установи: sudo pacman -S grim slurp satty jq wl-clipboard libnotify"; fi
+
+runtime_dir="${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}/md3-screenshot-$UID}"
+if [[ -L "$runtime_dir" ]]; then die 'Небезопасный каталог временных файлов'; fi
+mkdir -p -m 700 -- "$runtime_dir"
+[[ -d "$runtime_dir" && -O "$runtime_dir" ]] || die 'Временный каталог должен принадлежать текущему пользователю'
+exec 9>"$runtime_dir/md3-screenshot-$UID.lock"
+flock -n 9 || exit 0
+temporary_dir="$(mktemp -d "$runtime_dir/md3-shot.XXXXXXXX")"
+
+window_rectangles() {
+    local monitors
+    monitors="$(hyprctl monitors -j)"
+    hyprctl clients -j | jq -r --argjson monitors "$monitors" -f "$script_dir/screenshot-rects.jq"
+}
+
+geometry=''
+capture=(grim)
+case "$mode" in
+    area|window)
+        rectangles="$(window_rectangles)"
+        selector=(slurp -f '%x,%y %wx%h' -w 2 -c d0bcffff -b 14121866 -B d0bcff22)
+        if [[ "$mode" == window ]]; then
+            [[ -n "$rectangles" ]] || die 'На текущих рабочих столах нет окон для выбора'
+            selector+=(-r)
+        fi
+        if geometry="$(printf '%s\n' "$rectangles" | "${selector[@]}")"; then
+            [[ -n "$geometry" ]] || exit 0
+        else
+            status=$?
+            if ((status == 1)); then exit 0; fi
+            die "Ошибка выбора области (slurp: $status)"
+        fi
+        ;;
+    active)
+        geometry="$(hyprctl activewindow -j | jq -er '
+            select(.address != null and .address != "" and .address != "0x0")
+            | select((.at | length) == 2 and (.size | length) == 2)
+            | select(.size[0] > 0 and .size[1] > 0)
+            | "\(.at[0] | floor),\(.at[1] | floor) \(.size[0] | floor)x\(.size[1] | floor)"
+        ')" || die 'Нет активного окна для захвата'
+        ;;
+    screen)
+        monitor="$(hyprctl monitors -j | jq -er 'first(.[] | select(.focused == true) | .name)')" \
+            || die 'Активный монитор не найден'
+        capture+=(-o "$monitor")
+        ;;
+esac
+
+if [[ "$mode" != screen ]]; then
+    [[ "$geometry" =~ ^-?[0-9]+,-?[0-9]+\ [1-9][0-9]*x[1-9][0-9]*$ ]] \
+        || die 'Получена некорректная геометрия захвата'
+    capture+=(-g "$geometry")
+fi
+
+original="$temporary_dir/original.png"
+"${capture[@]}" "$original"
+[[ -s "$original" ]] || die 'grim вернул пустое изображение'
+
+destination="${HOME:?}/Pictures/Screenshots"
+mkdir -p -- "$destination"
+[[ -w "$destination" ]] || die 'Нет доступа на запись в Pictures/Screenshots'
+stem="$(date +'%Y-%m-%d_%H-%M-%S')"
+output="$destination/$stem.png"
+suffix=0
+while [[ -e "$output" || -L "$output" ]]; do
+    suffix=$((suffix + 1))
+    output="$destination/$stem-$suffix.png"
+done
+cp -- "$original" "$output"
+
+if "$edit"; then
+    # Autosaving through copy preserves the latest annotations on window close.
+    GTK_THEME=Adwaita:dark ADW_DEBUG_COLOR_SCHEME=prefer-dark \
+        satty --config "$script_dir/satty-sharex.toml" \
+        --filename - --fullscreen --output-filename "$output" < "$original" 9>&-
+fi
+
+[[ -s "$output" ]] || die 'Итоговый скриншот пуст'
+wl-copy --type image/png < "$output" 9>&-
+notify-send -a 'Скриншот' -i "$output" 'Скриншот сохранён' \
+    "$output"$'\nСкопирован в буфер обмена' || true
+printf '%s\n' "$output"

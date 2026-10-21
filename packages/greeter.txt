@@ -1,0 +1,4 @@
+# Только для ./install.sh --greeter
+greetd
+greetd-regreet
+cage

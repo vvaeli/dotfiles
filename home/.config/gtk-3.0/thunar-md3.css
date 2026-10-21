@@ -1,0 +1,83 @@
+/* MD3 palette from md3-colors.css (matugen), scoped to Thunar. */
+.thunar {
+    background-color: @md3_surface;
+    color: @md3_on_surface;
+}
+.thunar .view,
+.thunar scrolledwindow,
+.thunar notebook > stack {
+    background-color: @md3_surface;
+    color: @md3_on_surface;
+}
+.thunar .sidebar,
+.thunar .sidebar .view {
+    background-color: @md3_surface_container_low;
+    color: @md3_on_surface_variant;
+}
+.thunar .view:selected,
+.thunar .view:selected:focus,
+.thunar .sidebar row:selected,
+.thunar selection {
+    background-color: @md3_primary;
+    color: @md3_on_primary;
+}
+.thunar toolbar,
+.thunar menubar,
+.thunar statusbar {
+    background-image: none;
+    background-color: @md3_surface_container_low;
+    border: none;
+    box-shadow: none;
+}
+.thunar toolbar { padding: 6px; }
+.thunar statusbar { padding: 6px 10px; color: @md3_on_surface_variant; }
+.thunar button {
+    background-image: none;
+    background-color: @md3_surface_container_high;
+    color: @md3_on_surface;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+    text-shadow: none;
+    margin: 2px;
+    padding: 5px 8px;
+    transition: background-color 180ms ease;
+}
+.thunar button:hover { background-color: @md3_surface_container_highest; }
+.thunar button:checked,
+.thunar button:active { background-color: @md3_primary; color: @md3_on_primary; }
+.thunar button:disabled { background-color: @md3_surface_container_low; color: alpha(@md3_on_surface, 0.38); }
+.thunar entry {
+    background-image: none;
+    background-color: @md3_surface_container_high;
+    color: @md3_on_surface;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    box-shadow: none;
+    padding: 6px 10px;
+    caret-color: @md3_primary;
+}
+.thunar entry:focus { border-color: @md3_primary; }
+.thunar notebook > header {
+    background-color: @md3_surface_container_low;
+    border: none;
+}
+.thunar notebook > header tab {
+    background-color: @md3_surface_container_low;
+    border: none;
+    border-radius: 10px;
+    padding: 7px 12px;
+    margin: 4px;
+}
+.thunar notebook > header tab:checked { background-color: @md3_surface_container_highest; color: @md3_primary; }
+.thunar separator { background-color: @md3_outline_variant; opacity: 0.5; }
+.thunar scrollbar { background-color: transparent; }
+.thunar scrollbar slider {
+    background-color: @md3_outline_variant;
+    border: none;
+    border-radius: 6px;
+    min-width: 6px;
+    min-height: 6px;
+}
+.thunar scrollbar slider:hover { background-color: @md3_on_surface_variant; }
+.thunar rubberband { background-color: alpha(@md3_primary, 0.18); border: 1px solid @md3_primary; }

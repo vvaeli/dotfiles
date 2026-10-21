@@ -1,0 +1,48 @@
+# Hyprland и его окружение
+hyprland
+hyprpaper
+hypridle
+hyprlock
+hyprpolkitagent
+hyprland-guiutils
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xorg-xwayland
+# Оболочка (панель, док, меню) и цвета из обоев
+quickshell
+matugen
+python
+python-numpy        # визуализатор в меню плеера
+python-pillow       # экран входа, превью
+# Скриншоты, буфер обмена, файлы
+grim
+slurp
+satty
+wl-clipboard
+cliphist
+jq
+libnotify
+fd
+ffmpeg
+xdg-utils
+glib2
+# Сеть, звук, bluetooth, яркость, плеер
+networkmanager
+bluez
+bluez-utils
+pipewire
+wireplumber
+libpulse
+brightnessctl
+playerctl
+# Приложения и оформление
+ghostty
+thunar
+btop
+adwaita-fonts
+adw-gtk-theme
+qt6ct
+qt5ct
+# Сборка ночного режима
+gcc
+wayland

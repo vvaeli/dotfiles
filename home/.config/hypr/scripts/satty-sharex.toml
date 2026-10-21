@@ -1,0 +1,20 @@
+[general]
+initial-tool = "brush"
+resize = { mode = "smart" }
+copy-command = "wl-copy --type image/png"
+early-exit = []
+auto-copy = true
+save-after-copy = true
+actions-on-enter = ["save-to-file", "save-to-clipboard", "exit"]
+actions-on-escape = ["save-to-file", "save-to-clipboard", "exit"]
+actions-on-right-click = []
+disable-notifications = true
+no-window-decoration = true
+corner-roundness = 12
+
+[font]
+family = "Adwaita Sans"
+style = "Regular"
+
+[color-palette]
+palette = ["#d0bcffff", "#ffb4abff", "#a8dab5ff", "#8ecae6ff", "#e6e0e9ff", "#141218ff"]

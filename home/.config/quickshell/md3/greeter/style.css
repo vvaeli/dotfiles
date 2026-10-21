@@ -1,0 +1,181 @@
+/* ReGreet in the md3 shell's own look, with GDM's layout: the clock sits in the shell's
+   bar, the login column is a surface card in the middle of the wallpaper, the power
+   buttons sit on a dock-like surface grown from the bottom frame. The bar, frame and that
+   surface are painted into background.png by greeter_sync.py; colors.css is the palette. */
+@import url("colors.css");
+
+window {
+    background-color: @md3_surface;
+    color: @md3_text;
+    font-family: "Adwaita Sans";
+    font-size: 14px;
+}
+label { color: @md3_text; }
+
+/* Login card: the shell's detached surface. */
+frame.background {
+    background: @md3_surface;
+    border: none;
+    border-radius: 28px;
+    padding: 28px 16px 20px;
+    box-shadow: 0 2px 6px alpha(black, 0.25), 0 18px 48px alpha(black, 0.35);
+}
+frame.background > border { border: none; }
+/* The hidden caption column leaves a grid gap on the left; the fields and buttons give
+   the same room on the right so everything lines up under the avatar. */
+frame.background > grid { padding-right: 64px; }
+frame.background entry, frame.background passwordentry, frame.background combobox,
+frame.background > grid > box { margin-right: 36px; }
+
+/* Avatar and name, carried by the greeting label. */
+frame.background > grid > label:first-child {
+    background-image: url("avatar.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 88px 88px;
+    padding-top: 102px;
+    margin-left: 64px;
+    margin-bottom: -14px;
+    font-size: 20px;
+    font-weight: 600;
+}
+/* "User:", "Session:" and "Password:" captions are hidden. */
+frame.background > grid > label:not(:first-child) {
+    font-size: 0; min-width: 0; min-height: 0; margin: 0; padding: 0; opacity: 0;
+}
+
+/* Fields: tonal pills like the shell's search and password fields. */
+entry, passwordentry, combobox > box > button, dropdown > button {
+    background: @md3_button;
+    color: @md3_text;
+    border: 2px solid transparent;
+    border-radius: 24px;
+    min-height: 28px;
+    padding: 8px 18px;
+    box-shadow: none;
+    caret-color: @md3_primary;
+    transition: border-color 200ms cubic-bezier(0.2, 0, 0, 1), background-color 200ms ease;
+}
+entry:hover, passwordentry:hover, combobox > box > button:hover { background: @md3_hover; }
+entry:focus-within, passwordentry:focus-within { border-color: @md3_primary; background: @md3_card; }
+passwordentry > image { color: @md3_muted; }
+/* While the password is asked the user picker collapses away: the name above says who. */
+frame.background combobox:disabled > box > button {
+    min-height: 0; padding: 0; border: none; background: none; font-size: 0; opacity: 0;
+}
+frame.background combobox:disabled arrow { -gtk-icon-size: 0; min-width: 0; min-height: 0; }
+
+/* Buttons are the shell's chips; the main one is the selected (primary) chip. */
+button {
+    background: @md3_button;
+    color: @md3_text;
+    border: none;
+    border-radius: 17px;
+    min-height: 22px;
+    padding: 6px 16px;
+    box-shadow: none;
+    text-shadow: none;
+    font-weight: 500;
+    transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1), border-radius 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+button:hover { background: @md3_hover; }
+button:active { background: alpha(@md3_primary, 0.24); border-radius: 10px; }
+button:focus-visible { box-shadow: 0 0 0 2px @md3_primary; }
+button:disabled { opacity: 0.45; }
+button.suggested-action { background: @md3_primary; color: @md3_on_primary; font-weight: 600; }
+button.suggested-action:hover { background: shade(@md3_primary, 1.08); }
+button.suggested-action:active { background: shade(@md3_primary, 0.92); }
+
+/* Pencil toggles (type a user or session by hand): flat round icons, gone when unusable. */
+frame.background togglebutton, frame.background button.toggle {
+    background: transparent; color: @md3_muted;
+    min-width: 0; min-height: 0; padding: 8px; border-radius: 99px;
+}
+frame.background togglebutton:hover, frame.background button.toggle:hover { background: alpha(@md3_text, 0.08); }
+frame.background togglebutton:checked, frame.background button.toggle:checked { background: @md3_secondary_container; color: @md3_text; }
+frame.background togglebutton:disabled, frame.background button.toggle:disabled { opacity: 0; padding: 0; -gtk-icon-size: 0; }
+
+/* Clock: centred in the painted bar, like the shell's clock. */
+overlay > frame:nth-child(3) {
+    background: transparent; border: none; border-radius: 0; box-shadow: none;
+    padding: 0; min-height: 44px;
+}
+overlay > frame:nth-child(3) label {
+    font-size: 15px;
+    font-weight: 700;
+    font-feature-settings: "tnum";
+}
+
+/* Messages: a small surface pill above the dock; errors in the error color. */
+infobar, infobar > revealer > box { background: transparent; border: none; box-shadow: none; }
+infobar label {
+    background: alpha(@md3_surface, 0.9);
+    color: @md3_muted;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 15px;
+}
+infobar.error label { color: @md3_error; }
+
+/* Power buttons on the painted dock surface. */
+button.destructive-action {
+    background: @md3_card;
+    color: @md3_text;
+    padding: 8px 18px;
+    margin-bottom: 4px;
+}
+button.destructive-action:hover { background: @md3_hover; }
+button.destructive-action:last-child { color: @md3_error; }
+button.destructive-action:last-child:hover { background: alpha(@md3_error, 0.16); }
+
+popover > contents {
+    background: @md3_surface; color: @md3_text;
+    border: 1px solid @md3_outline; border-radius: 20px; padding: 4px;
+    box-shadow: 0 8px 24px alpha(black, 0.4);
+}
+modelbutton, popover listview > row { border-radius: 14px; padding: 10px 14px; }
+modelbutton:hover, popover listview > row:hover { background: alpha(@md3_text, 0.07); }
+selection { background: @md3_primary; color: @md3_on_primary; }
+tooltip { opacity: 0; }
+
+/* Icon buttons. ReGreet's labels are English and fixed, so the actions show as icons:
+   the gear (Cancel) leaves the password and opens the user and session choice, as GDM's
+   session gear does; the arrow (Login) goes on; the dock has restart and power off. */
+frame.background > grid > box > button,
+button.destructive-action {
+    font-size: 0;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+}
+frame.background > grid > box > button:not(.suggested-action) {
+    /* Pushed to the left edge of the field, away from the arrow. */
+    margin-right: 168px;
+    background-color: transparent;
+    background-image: -gtk-icontheme("emblem-system-symbolic");
+    color: @md3_muted;
+}
+frame.background > grid > box > button:not(.suggested-action):hover { background-color: alpha(@md3_text, 0.08); color: @md3_text; }
+frame.background > grid > box > button.suggested-action {
+    min-width: 56px;
+    background-color: @md3_primary;
+    background-image: -gtk-icontheme("go-next-symbolic");
+    color: @md3_on_primary;
+}
+frame.background > grid > box > button.suggested-action:hover { background-color: shade(@md3_primary, 1.08); }
+frame.background > grid > box > button.suggested-action:disabled { background-color: @md3_button; color: @md3_muted; opacity: 1; }
+frame.background > grid > box > button:active { border-radius: 12px; }
+
+button.destructive-action {
+    min-width: 48px;
+    background-color: @md3_card;
+    background-image: -gtk-icontheme("system-reboot-symbolic");
+    color: @md3_text;
+}
+button.destructive-action:last-child { background-image: -gtk-icontheme("system-shutdown-symbolic"); color: @md3_error; }
+button.destructive-action:hover { background-color: @md3_hover; }
+button.destructive-action:last-child:hover { background-color: alpha(@md3_error, 0.16); }
