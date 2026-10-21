@@ -10,7 +10,7 @@
 ![Arch](https://img.shields.io/badge/Arch_Linux-1793D1?style=flat-square&logo=archlinux&logoColor=white)
 ![matugen](https://img.shields.io/badge/цвета-matugen-a8dab5?style=flat-square)
 
-<img src="assets/bar.png" alt="Панель на двух мониторах">
+<img src="assets/shot-control-center.jpg" alt="Центр управления">
 
 </div>
 
@@ -34,6 +34,21 @@ cd ~/dotfiles && ./install.sh
 > [!NOTE]
 > Установщик **ничего не удаляет**. Всё, что он заменяет, включая весь старый `~/.config/hypr`,
 > уезжает в `~/.local/state/md3-dotfiles/backup-<время>/`. Запускать повторно безопасно.
+
+---
+
+## 📷 Скриншоты
+
+<table>
+<tr>
+<td><img src="assets/shot-wallpaper.jpg" alt="Обои"><p align="center"><sub>Обои → цвета (<code>Super+W</code>)</sub></p></td>
+<td><img src="assets/shot-system.jpg" alt="Системное меню"><p align="center"><sub>Системное меню</sub></p></td>
+</tr>
+<tr>
+<td><img src="assets/shot-launcher.jpg" alt="Лаунчер"><p align="center"><sub>Лаунчер (<code>Super+R</code>)</sub></p></td>
+<td><img src="assets/shot-desktop.jpg" alt="Рабочий стол"><p align="center"><sub>Рабочий стол: панель, рамка, док</sub></p></td>
+</tr>
+</table>
 
 ---
 
