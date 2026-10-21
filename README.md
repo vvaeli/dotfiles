@@ -8,7 +8,7 @@ Hyprland в стиле Material Design 3: своя оболочка на Quicksh
 ## Установка (Arch Linux)
 
 ```sh
-git clone <ссылка на репозиторий> ~/dotfiles
+git clone https://github.com/vvaeli/dotfiles ~/dotfiles
 cd ~/dotfiles
 ./install.sh            # пакеты + конфиги
 ./install.sh --greeter  # то же + экран входа в стиле md3 (greetd + ReGreet)
